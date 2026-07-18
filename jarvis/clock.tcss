@@ -1,0 +1,4 @@
+Clock {
+    align: center middle;
+    width: auto;
+}

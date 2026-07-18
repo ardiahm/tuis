@@ -1,2 +1,6 @@
 # venv
 .v/*
+
+# textual examples
+examples/*
+examples/
