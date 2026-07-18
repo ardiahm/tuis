@@ -4,3 +4,6 @@
 # textual examples
 examples/*
 examples/
+
+# jarvis cache
+jarvis/__pycache__/*

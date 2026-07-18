@@ -13,12 +13,20 @@ class JarvisApp(App):
 
     CSS_PATH = "jarvis01.tcss"
 
+    BINDINGS = [
+        ("d", "toggle_dark", "toggle dark mode")
+        ]
+
     def compose(self) -> ComposeResult:
         yield Clock(id="clock")
         yield Date(id="date")
         yield Footer()
 
-
+    def action_toggle_dark(self) -> None:
+        """An action to toggle dark mode"""
+        self.theme = (
+            "textual-dark" if self.theme == "textual-light" else "textual-light"
+        )
 
 if __name__ == "__main__":
     app = JarvisApp()
