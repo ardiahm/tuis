@@ -35,21 +35,21 @@ class MemoryPercentage(Label):
         """Method which is called whenever mem_percent's value is changed"""
         self.update(f"{value:.1f}%")
 
-class MemoryAvailable(Label):
-    """A widget to display the memory (in GB) available"""
-    mem_avail = reactive(0)
+# class MemoryAvailable(Label):
+#     """A widget to display the memory (in GB) available"""
+#     mem_avail = reactive(0)
 
-    def on_mount(self) -> None:
-        """Event handler called when widget is added to the app."""
-        self.update_memory_avail()
-        self.set_interval(1, self.update_memory_avail)
+#     def on_mount(self) -> None:
+#         """Event handler called when widget is added to the app."""
+#         self.update_memory_avail()
+#         self.set_interval(1, self.update_memory_avail)
 
-    def update_memory_avail(self) -> None:
-        self.mem_avail = psutil.virtual_memory().available
+#     def update_memory_avail(self) -> None:
+#         self.mem_avail = psutil.virtual_memory().available
 
-    def watch_mem_avail(self, value: int) -> None:
-        mem_in_gb = value / (1000**3)
-        self.update(f"{mem_in_gb:.1f} GB")
+#     def watch_mem_avail(self, value: int) -> None:
+#         mem_in_gb = value / (1000**3)
+#         self.update(f"{mem_in_gb:.1f} GB")
 
 class Memory(Widget):
     """A memory details widget."""
@@ -58,10 +58,10 @@ class Memory(Widget):
 
     def compose(self) -> ComposeResult:
         with Vertical(id="border"):
-            yield Static("----------------  ------------------", id="title")
             with Horizontal(id="memory-content"):
-                yield Static(" : Using ")
+                yield Static(" : ")
                 yield MemoryPercentage()
-                yield Static(" with ")
-                yield MemoryAvailable()
-                yield Static( " available")
+                # yield Static(" of RAM")
+                # yield Static(" with ")
+                # yield MemoryAvailable()
+                # yield Static( " available")
