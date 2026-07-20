@@ -5,6 +5,7 @@ from clock import Clock
 from date import Date
 from memory import Memory
 from cpu import CPU
+from disk import Disk
 
 from textual.containers import Horizontal, Vertical, Grid
 from textual.reactive import reactive
@@ -28,7 +29,7 @@ class JarvisApp(App):
                 with Vertical(id="sys-info"):
                     yield CPU(id="cpu")
                     yield Memory(id="memory")
-                    yield Static("󰋊 : XX%", id="disk")
+                    yield Disk(id="disk")
             yield Horizontal(id="bottom-left")
             with Horizontal(id="system-info"):
                 yield Static("hi")
