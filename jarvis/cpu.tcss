@@ -1,0 +1,4 @@
+#cpu-content {
+    width: auto;
+    height: 2;
+}

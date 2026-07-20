@@ -4,6 +4,7 @@ from textual.app import App, ComposeResult
 from clock import Clock
 from date import Date
 from memory import Memory
+from cpu import CPU
 
 from textual.containers import Horizontal, Vertical, Grid
 from textual.reactive import reactive
@@ -28,7 +29,7 @@ class JarvisApp(App):
             with Horizontal(id="system-info"):
                 with Vertical(id="memory-stack"):
                     yield Memory(id="memory-one")
-                    yield Memory(id="memory-two")
+                    yield CPU(id="cpu")
         yield Footer()
 
     def action_toggle_dark(self) -> None:
