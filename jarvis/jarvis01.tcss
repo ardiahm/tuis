@@ -41,12 +41,22 @@ JarvisApp {
 }
 
 #system-info {
-    align: right bottom;
+    width: 1fr;
+    height: 1fr;
 }
 
-#memory {
+Memory {
     width: 55;
     height: auto;
-    align-horizontal: right;
+}
+
+#memory-stack {
+    align-horizontal: right; 
     margin: 0 0 0 20;
+}
+
+#memory-one,
+#memory-two {
+    width: 55;
+    height: 4;
 }

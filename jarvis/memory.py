@@ -1,6 +1,4 @@
-import platform
 import psutil
-import cpuinfo
 
 from pathlib import Path
 

@@ -26,8 +26,9 @@ class JarvisApp(App):
                     yield Date(id="date")
             yield Horizontal(id="bottom-left")
             with Horizontal(id="system-info"):
-                with Vertical():
-                    yield Memory(id="memory")
+                with Vertical(id="memory-stack"):
+                    yield Memory(id="memory-one")
+                    yield Memory(id="memory-two")
         yield Footer()
 
     def action_toggle_dark(self) -> None:
