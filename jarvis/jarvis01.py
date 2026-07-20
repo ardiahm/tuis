@@ -3,8 +3,9 @@ from time import monotonic
 from textual.app import App, ComposeResult
 from clock import Clock
 from date import Date
+from memory import Memory
 
-from textual.containers import HorizontalGroup, VerticalScroll
+from textual.containers import Horizontal, Vertical, Grid
 from textual.reactive import reactive
 from textual.widgets import Button, Digits, Footer, Header
 
@@ -18,8 +19,15 @@ class JarvisApp(App):
         ]
 
     def compose(self) -> ComposeResult:
-        yield Clock(id="clock")
-        yield Date(id="date")
+        with Grid(id="dashboard"):
+            with Horizontal(id="top-panel"):
+                with Vertical(id="clock-date"):
+                    yield Clock(id="clock")
+                    yield Date(id="date")
+            yield Horizontal(id="bottom-left")
+            with Horizontal(id="system-info"):
+                with Vertical():
+                    yield Memory(id="memory")
         yield Footer()
 
     def action_toggle_dark(self) -> None:

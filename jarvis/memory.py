@@ -2,13 +2,16 @@ import platform
 import psutil
 import cpuinfo
 
+from pathlib import Path
+
 from textual.app import ComposeResult
 from textual.containers import Horizontal, Vertical
 from textual.reactive import reactive
-from textual.widgets import Digits, Static, Widget
+from textual.widgets import Digits, Static, Label
+from textual.widget import Widget
 
 
-class MemoryPercentage(Digits):
+class MemoryPercentage(Label):
     """A widget to display actively used memory (percentage)"""
     mem_percent = reactive(0.0)
 
@@ -25,7 +28,7 @@ class MemoryPercentage(Digits):
         """Method which is called whenever mem_percent's value is changed"""
         self.update(f"{value:.1f}%")
 
-class MemoryAvailable(Digits):
+class MemoryAvailable(Label):
     """A widget to display the memory (in GB) available"""
     mem_avail = reactive(0)
 
@@ -44,11 +47,16 @@ class MemoryAvailable(Digits):
 class Memory(Widget):
     """A memory details widget."""
 
+    DEFAULT_CSS = Path(Path(__file__).parent / "memory.tcss").read_text(encoding="utf-8")
+
     def compose(self) -> ComposeResult:
-        with Horizontal():
-            with Vertical(classes="memory-row"):
-                yield Static("Memory Usage: ")
-                yield Static("Memory Available: ")
-            with Vertical(classes="memory-values"):
-                yield MemoryPercentage()
-                yield MemoryAvailable()
+        with Vertical(id="border"):
+            yield Static("------------- MEMORY ------------", id="title")
+            with Horizontal(id="memory-content"):
+                with Vertical(classes="memory-row"):
+                    yield Static("Memory Usage: ")
+                    yield Static("Memory Available: ")
+                with Vertical(classes="memory-values"):
+                    yield MemoryPercentage()
+                    yield MemoryAvailable()
+            yield Static("---------------------------------", id="footer")
