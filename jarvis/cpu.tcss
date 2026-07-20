@@ -2,3 +2,8 @@
     width: auto;
     height: 2;
 }
+
+#cpu-content > * {
+    width: auto;
+    height: 1;
+}

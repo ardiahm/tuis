@@ -20,7 +20,16 @@ class MemoryPercentage(Label):
 
     def update_mem_percent(self) -> None:
         """Method to update memory percentage to current"""
-        self.mem_percent = psutil.virtual_memory().percent
+        percent = psutil.virtual_memory().percent
+
+        if percent < 70.0:
+            color = "$success"
+        elif percent < 80.0:
+            color = "$warning"
+        else:
+            color = "$error"
+
+        self.update(f"[{color}]{percent:.1f}%[/{color}]")
 
     def watch_mem_percent(self, value: float) -> None:
         """Method which is called whenever mem_percent's value is changed"""
@@ -49,12 +58,10 @@ class Memory(Widget):
 
     def compose(self) -> ComposeResult:
         with Vertical(id="border"):
-            yield Static("------------- MEMORY --------------", id="title")
+            yield Static("----------------  ------------------", id="title")
             with Horizontal(id="memory-content"):
-                with Vertical(classes="memory-row"):
-                    yield Static("Memory Usage: ")
-                    yield Static("Memory Available: ")
-                with Vertical(classes="memory-values"):
-                    yield MemoryPercentage()
-                    yield MemoryAvailable()
-            yield Static("-----------------------------------", id="footer")
+                yield Static(" : Using ")
+                yield MemoryPercentage()
+                yield Static(" with ")
+                yield MemoryAvailable()
+                yield Static( " available")

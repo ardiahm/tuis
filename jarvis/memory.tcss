@@ -2,3 +2,8 @@
     width: auto;
     height: 2;
 }
+
+#memory-content > * {
+    width: auto;
+    height: 1;
+}

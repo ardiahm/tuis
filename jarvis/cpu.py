@@ -23,11 +23,20 @@ class CPU_Percentage(Label):
     
     def update_cpu_percent(self) -> None:
         """Method to update cpu percentage to current snapshot. """
-        self.cpu_percent = psutil.cpu_percent()
+        usage = psutil.cpu_percent(interval=None)
+
+        if usage < 50:
+            color = "$success"
+        elif usage < 80:
+            color = "$warning"
+        else:
+            color = "$error"
+
+        self.update(f"[{color}]{usage:.1f}%[/{color}]")
 
     def watch_cpu_percent(self, value: float) -> None:
         """Method which is called whenver cpu_percent's value is changed"""
-        self.update(f"{value:.1f}%")
+        self.update(f"{value:5.1f}%")
     
 class CPU_Speed(Label):
     """A widget to display CPU Speed (GHz)"""
@@ -41,7 +50,16 @@ class CPU_Speed(Label):
     
     def update_cpu_speed(self) -> None:
         """Method to update cpu speed to current snapshot. """
-        self.cpu_speed = (psutil.cpu_freq().current / 1000)
+        speed = (psutil.cpu_freq().current / 1000)
+
+        if speed > 3.25:
+            color = "$success"
+        elif speed > 2.75:
+            color = "$warning"
+        else:
+            color = "$error"
+
+        self.update(f"[{color}]{speed:.2f} GHz [/{color}]")
 
     def watch_cpu_speed(self, value: float) -> None:
         """Method which is called whenver cpu_speed's value is changed"""
@@ -54,12 +72,9 @@ class CPU(Widget):
 
     def compose(self) -> ComposeResult:
         with Vertical(id="border"):
-            yield Static("------------ PROCESSOR ------------", id="title")
+            yield Static("------------  ------------", id="title")
             with Horizontal(id="cpu-content"):
-                with Vertical(classes="cpu-row"):
-                    yield Static("CPU Usage: ")
-                    yield Static("CPU Speed: ")
-                with Vertical(classes="cpu-values"):
-                    yield CPU_Percentage()
-                    yield CPU_Speed()
-            yield Static("-----------------------------------", id="footer")
+                yield Static(" : Using ")
+                yield CPU_Percentage()
+                yield Static(" at ")
+                yield CPU_Speed()
