@@ -49,7 +49,7 @@ class Memory(Widget):
 
     def compose(self) -> ComposeResult:
         with Vertical(id="border"):
-            yield Static("------------- MEMORY ------------", id="title")
+            yield Static("------------- MEMORY --------------", id="title")
             with Horizontal(id="memory-content"):
                 with Vertical(classes="memory-row"):
                     yield Static("Memory Usage: ")
@@ -57,4 +57,4 @@ class Memory(Widget):
                 with Vertical(classes="memory-values"):
                     yield MemoryPercentage()
                     yield MemoryAvailable()
-            yield Static("---------------------------------", id="footer")
+            yield Static("-----------------------------------", id="footer")

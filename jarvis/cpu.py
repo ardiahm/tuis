@@ -54,7 +54,7 @@ class CPU(Widget):
 
     def compose(self) -> ComposeResult:
         with Vertical(id="border"):
-            yield Static("---------- PROCESSOR -----------", id="title")
+            yield Static("------------ PROCESSOR ------------", id="title")
             with Horizontal(id="cpu-content"):
                 with Vertical(classes="cpu-row"):
                     yield Static("CPU Usage: ")
@@ -62,4 +62,4 @@ class CPU(Widget):
                 with Vertical(classes="cpu-values"):
                     yield CPU_Percentage()
                     yield CPU_Speed()
-            yield Static("------------------------------", id="footer")
+            yield Static("-----------------------------------", id="footer")

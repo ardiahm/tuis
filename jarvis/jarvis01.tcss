@@ -50,13 +50,18 @@ Memory {
     height: auto;
 }
 
-#memory-stack {
+#info-stack {
     align-horizontal: right; 
     margin: 0 0 0 20;
 }
 
-#memory-one,
-#memory-two {
+#memory {
+    width: 55;
+    height: 4;
+}
+
+#cpu {
+    margin-top: 1;
     width: 55;
     height: 4;
 }

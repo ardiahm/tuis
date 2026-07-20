@@ -27,8 +27,8 @@ class JarvisApp(App):
                     yield Date(id="date")
             yield Horizontal(id="bottom-left")
             with Horizontal(id="system-info"):
-                with Vertical(id="memory-stack"):
-                    yield Memory(id="memory-one")
+                with Vertical(id="info-stack"):
+                    yield Memory(id="memory")
                     yield CPU(id="cpu")
         yield Footer()
 
