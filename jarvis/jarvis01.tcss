@@ -65,3 +65,8 @@ JarvisApp {
     width: 55;
     height: 1;
 }
+
+#docker-info {
+    align: right middle;
+    margin: 2 0 0 24;
+}

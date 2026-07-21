@@ -1,0 +1,15 @@
+DockerContainers {
+    width: 1fr;
+    height: 1fr;
+}
+
+#container-list {
+    width: 1fr;
+    height: 1fr;
+    overflow-y: auto;
+}
+
+#container-list Label {
+    width: 1fr;
+    height: 1;
+}

@@ -6,6 +6,7 @@ from date import Date
 from memory import Memory
 from cpu import CPU
 from disk import Disk
+from docker_containers import DockerContainers
 
 from textual.containers import Horizontal, Vertical, Grid
 from textual.reactive import reactive
@@ -31,8 +32,8 @@ class JarvisApp(App):
                     yield Memory(id="memory")
                     yield Disk(id="disk")
             yield Horizontal(id="bottom-left")
-            with Horizontal(id="system-info"):
-                yield Static("hi")
+            with Horizontal(id="docker-info"):
+                yield DockerContainers()
             yield Footer()
 
     def action_toggle_dark(self) -> None:
