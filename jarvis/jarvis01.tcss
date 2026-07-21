@@ -68,5 +68,5 @@ JarvisApp {
 
 #docker-info {
     align: right middle;
-    margin: 2 0 0 24;
+    margin: 0 0 0 24;
 }

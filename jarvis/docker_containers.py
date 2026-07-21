@@ -16,8 +16,7 @@ class DockerContainers(Widget):
 
 
     def compose(self) -> ComposeResult:
-        """Map each container to corresponding Label widgets."""
-
+        """Yield vertical container for all Label widgets."""
         yield Vertical(id="container-list")
 
 
@@ -32,11 +31,22 @@ class DockerContainers(Widget):
         container_list = self.query_one("#container-list", Vertical)
 
         try:
+            # connect to docker client, store all container info in containers
             client = docker.from_env()
             containers = client.containers.list(all=True)
 
             labels = []  
 
+            # Display count of Docker Containers
+            count = Label(
+                f"({len(containers)}) Docker Containers:"
+            )
+
+            # Append to labels
+            labels.append(count)
+            
+            # check status, display container name and short_id (truncated to 6)
+            # with appropriate styling
             for container in containers:
                 if container.status in ("exited", "created"):
                     color = "$foreground"
@@ -49,19 +59,23 @@ class DockerContainers(Widget):
                         f"[{color}]{container.name} - {container.short_id[:6]}[/{color}]"
                     )
             
+                # Append to labels
                 labels.append(content)
 
-
+            # If none found, state no Docker containers found.
             if not labels:
                 labels = [Label("No Docker containers found.")]
             
+            # Rather than appending containers to Labels each refresh,
+            # we clear and then repopulate
             container_list.remove_children()
             container_list.mount(*labels)
 
-        except docker.errors:
+        # Catch errors
+        except docker.errors.DockerException:
             container_list.remove_children()
             container_list.mount(
-                Label("Unable to connect to Docker", style="$error")
+                Label("Unable to connect to Docker")
             )
 
 
