@@ -3,9 +3,9 @@ import psutil
 from pathlib import Path
 
 from textual.app import ComposeResult
-from textual.containers import Horizontal, Vertical
+from textual.containers import Horizontal
 from textual.reactive import reactive
-from textual.widgets import Digits, Static, Label
+from textual.widgets import Static, Label
 from textual.widget import Widget
 
 
@@ -42,7 +42,7 @@ class MemoryTotal(Label):
     def on_mount(self) -> None:
         """Event handler called when widget is added to the app."""
         self.update_memory_total()
-        self.set_interval(500, self.update_memory_total())
+        self.set_interval(10000, self.update_memory_total())
 
     def update_memory_total(self) -> None:
         self.memory_total = psutil.virtual_memory().total

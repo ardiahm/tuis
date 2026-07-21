@@ -3,9 +3,9 @@ import psutil
 from pathlib import Path
 
 from textual.app import ComposeResult
-from textual.containers import Horizontal, Vertical
+from textual.containers import Horizontal
 from textual.reactive import reactive
-from textual.widgets import Digits, Static, Label
+from textual.widgets import Static, Label
 from textual.widget import Widget
 
 
