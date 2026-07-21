@@ -38,10 +38,10 @@ class DiskPercentage(Label):
 class Disk(Widget):
     """A disk details widget."""
 
-    DEFAULT_CSS = Path(Path(__file__).parent / "memory.tcss").read_text(encoding="utf-8")
+    DEFAULT_CSS = Path(Path(__file__).parent / "disk.tcss").read_text(encoding="utf-8")
+
 
     def compose(self) -> ComposeResult:
-        with Vertical(id="border"):
-            with Horizontal(id="memory-content"):
-                yield Static("󰋊 : ")
-                yield DiskPercentage()
+        with Horizontal(id="disk-content"):
+            yield Static("󰋊 : ")
+            yield DiskPercentage()

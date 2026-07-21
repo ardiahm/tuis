@@ -1,5 +1,7 @@
 from time import monotonic
 
+from pyfiglet import figlet_format
+
 from textual.app import App, ComposeResult
 from clock import Clock
 from date import Date
@@ -20,10 +22,32 @@ class JarvisApp(App):
     BINDINGS = [
         ("d", "toggle_dark", "toggle dark mode")
         ]
+    
+
+    
 
     def compose(self) -> ComposeResult:
+        CSS = """
+        #ascii-logo-one {
+            width: auto;
+            height: 10;
+            text-wrap: nowrap;
+        }
+        """
+
+        CSS = """
+        #ascii-logo-two {
+            width: auto;
+            height: auto;
+            text-wrap: nowrap;
+        }
+        """
+
+        hello = figlet_format("Hello : ", font="slant")
+        name = figlet_format("Ardi", font="slant")
+
         with Grid(id="dashboard"):
-            with Horizontal(id="top-panel"):
+            with Vertical(id="left-panel"):
                 with Vertical(id="clock-date"):
                     yield Clock(id="clock")
                     yield Date(id="date")
@@ -31,10 +55,9 @@ class JarvisApp(App):
                     yield CPU(id="cpu")
                     yield Memory(id="memory")
                     yield Disk(id="disk")
-            yield Horizontal(id="bottom-left")
-            with Horizontal(id="docker-info"):
-                yield DockerContainers()
-            yield Footer()
+                with Vertical(id="docker-info"):
+                    yield DockerContainers()
+            
 
     def action_toggle_dark(self) -> None:
         """An action to toggle dark mode"""

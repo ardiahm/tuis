@@ -70,8 +70,8 @@ class CPU(Widget):
 
     DEFAULT_CSS = Path(Path(__file__).parent / "cpu.tcss").read_text(encoding="utf-8")
 
+
     def compose(self) -> ComposeResult:
-        with Vertical(id="border"):
             with Horizontal(id="cpu-content"):
                 yield Static(" : ")
                 yield CPU_Percentage()

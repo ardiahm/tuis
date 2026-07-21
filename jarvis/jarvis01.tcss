@@ -3,70 +3,43 @@ JarvisApp {
 }
 
 #dashboard {
-    width: 1fr;
-    height: 1fr;
-
-    grid-size: 2 2;
-    grid-columns: 2fr 3fr;
-    grid-rows: 3fr 7fr;
-    grid-gutter: 1;
+    width: 100%;
+    height: 100%;
+    padding-left: 2;
 }
 
-#top-panel {
-    column-span: 2;
+#left-panel {
+    width: 100%;
+    height: 100%;
 
-}
-
-#top-panel, 
-#bottom-left,
-#system-info {
-    width: 1fr;
-    height: 1fr;
+    layout: vertical;
 }
 
 #clock-date {
-    width: auto;
+    width: 100%;
     height: auto;
-    margin: 1 0 0 3;
-}
-
-#clock {
-    width: auto;
-    height: auto;
-}
-
-#date {
-    width: auto;
-    height: auto;
-    margin-left: 0;
-}
-
-#bottom-left {
-
-}
-
-#system-info {
-    width: 1fr;
-    height: 1fr;
-
+    margin-top: 1;
+    margin-bottom: 1;
 }
 
 #sys-info {
-    align-horizontal: right;
-    align-vertical: bottom;
-    margin: 2 0 1 20;
+    width: 30;
+    height: auto;
 }
 
-
-#disk,
-#memory, 
-#cpu {
-    margin: 0 0 0 20;
-    width: 55;
-    height: 1;
+#cpu,
+#memory,
+#disk {
+    width: 25;
+    height: 2;
 }
 
 #docker-info {
-    align: right middle;
-    margin: 0 0 0 24;
+    width: 100%;
+    height: 1fr;
+}
+
+#right-panel {
+    width: 100%;
+    height: 100%;
 }

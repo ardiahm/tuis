@@ -1,9 +1,9 @@
-#memory-content {
+#disk-content {
     width: 100%;
     height: 1;
 }
 
-#memory-content > * {
+#disk-content > * {
     width: auto;
     height: 1;
 }
