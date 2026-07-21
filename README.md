@@ -7,7 +7,8 @@ Subjectively, I find Textual's framework to be very visually appealling and also
 ## Project Gallery
 
 !["Screenshot Of Jarvis Dashboard"](./jarvis/jarvis.png)
-I've only completed one project so far... Stay tuned for more.
+
+*I've only completed one project so far... Stay tuned for more.*
 
 ## End Goal
 
