@@ -6,7 +6,8 @@ This project is my spin on a Jarvis-esque dashboard which I could leave running 
 
 1. Time
 2. Date
-3. System Info (Memory, CPU, Disk, Temps)
+3. System Info (Memory, CPU, Disk)
+4. Docker Containers (gray = inactive, green = active)
 
 ## Future Plans
 
